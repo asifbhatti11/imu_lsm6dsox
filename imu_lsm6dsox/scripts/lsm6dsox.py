@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import rospy
 from sensor_msgs.msg import Imu
-
 import time
 import board
 import busio
@@ -10,9 +9,9 @@ from adafruit_lsm6ds import LSM6DSOX
 i2c = busio.I2C(board.SCL, board.SDA)
 sensor = LSM6DSOX(i2c)
 
-#calibration=(0,0,0)# go to https://learn.adafruit.com/adafruit-sensorlab-magnetometer-calibration and perform calibration replace (0,0,0) with it.
+calibration=(0,0,0)# go to https://learn.adafruit.com/adafruit-sensorlab-magnetometer-calibration and perform calibration replace (0,0,0) with it.
 
-def talker():
+def imu():
     pub = rospy.Publisher('imu', Imu, queue_size=1)
     rospy.init_node('imu', anonymous=True)
     rate = rospy.Rate(10) # 10hz
@@ -31,7 +30,7 @@ def talker():
 
 if __name__ == '__main__':
     try:
-        talker()
+        imu()
     except rospy.ROSInterruptException:
         pass
 
