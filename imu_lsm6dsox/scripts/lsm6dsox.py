@@ -9,7 +9,9 @@ from adafruit_lsm6ds import LSM6DSOX
 i2c = busio.I2C(board.SCL, board.SDA)
 sensor = LSM6DSOX(i2c)
 
-calibration=(0,0,0)# go to https://learn.adafruit.com/adafruit-sensorlab-magnetometer-calibration and perform calibration replace (0,0,0) with it.
+calibration=(0,0,0)
+# go to https://learn.adafruit.com/adafruit-sensorlab-magnetometer-calibration 
+# and perform calibration, replace (0,0,0) with it.
 
 def imu():
     pub = rospy.Publisher('imu', Imu, queue_size=1)
